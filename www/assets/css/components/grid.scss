@@ -1,0 +1,40 @@
+// Container
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2vw;
+  padding-left: 2vw;
+}
+
+// Row
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -1vw;
+  margin-left: -1vw;
+}
+
+// Column
+.col {
+  position: relative;
+  width: calc(100% - 2vw);
+  min-height: 1px;
+  padding-right: 1vw;
+  padding-left: 1vw;
+}
+
+// Column sizes
+@for $i from 1 through 12 {
+  .col-#{$i} {
+    flex: 0 0 calc(#{$i} / 12 * 100vw - 2vw);
+    max-width: calc(#{$i} / 12 * 100vw - 2vw);
+  }
+}
+
+// Container fluid
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 2vw;
+  padding-left: 2vw;
+}
