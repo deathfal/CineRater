@@ -1,0 +1,26 @@
+
+.featured {
+  padding: 20px 0;
+
+  .featured-carousel {
+    display: flex;
+    overflow-x: scroll;
+
+    .featured-item {
+      margin-right: 15px;
+      flex: 0 0 150px;
+
+      img {
+        width: 150px;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      h3 {
+        font-size: 1rem;
+        margin-top: 10px;
+        color: #fff;
+      }
+    }
+  }
+}

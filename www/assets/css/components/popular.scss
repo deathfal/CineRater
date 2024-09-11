@@ -1,0 +1,26 @@
+
+.popular {
+  padding: 20px 0;
+
+  .popular-grid {
+    display: flex;
+    gap: 15px;
+
+    .popular-item {
+      flex: 0 0 100px;
+      text-align: center;
+
+      img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      h4 {
+        color: #fff;
+        margin-top: 10px;
+      }
+    }
+  }
+}
