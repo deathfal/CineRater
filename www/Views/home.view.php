@@ -125,16 +125,20 @@
     <h2>Most Popular Celebrities</h2>
     <div class="popular-grid">
         <div class="popular-item">
-            <img src="../../assets/img/celeb1.jpg" alt="Celebrity 1">
-            <h4>Celebrity Name 1</h4>
+            <img src="../../assets/img/celebrities/keanu-reeves.png" alt="Celebrity 1">
+            <h3>Keanu Reeves</h3>
         </div>
         <div class="popular-item">
-            <img src="../../assets/img/celeb2.jpg" alt="Celebrity 2">
-            <h4>Celebrity Name 2</h4>
+            <img src="../../assets/img/celebrities/Tim-Burton.png" alt="Celebrity 2">
+            <h3>Tim Burton</h3>
         </div>
         <div class="popular-item">
-            <img src="../../assets/img/celeb3.jpg" alt="Celebrity 3">
-            <h4>Celebrity Name 3</h4>
+            <img src="../../assets/img/celebrities/Eve-Hewson.png" alt="Celebrity 3">
+            <h3>Eve Hewson</h3>
+        </div>
+        <div class="popular-item">
+            <img src="../../assets/img/celebrities/Michael-Keaton.png" alt="Celebrity 4">
+            <h3>Michael Keaton</h3>
         </div>
     </div>
 </section>

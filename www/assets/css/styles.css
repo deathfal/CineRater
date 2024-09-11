@@ -97,12 +97,13 @@
 .navbar .col {
   display: flex;
   align-items: center;
+  margin-left: 20px;
 }
 .navbar a {
   color: #fff;
   text-decoration: none;
   margin-right: 10px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 .navbar input[type=text] {
@@ -117,7 +118,7 @@
 }
 
 .popular {
-  padding: 20px 0;
+  margin: 0 30px;
 }
 .popular .popular-grid {
   display: flex;
@@ -128,8 +129,8 @@
   text-align: center;
 }
 .popular .popular-grid .popular-item img {
-  width: 80px;
-  height: 80px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -139,15 +140,15 @@
 }
 
 .up-next {
-  padding: 20px 0;
+  margin: 0 30px;
 }
 .up-next .up-next-item {
   display: flex;
   margin-bottom: 10px;
 }
 .up-next .up-next-item img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   margin-right: 10px;
   object-fit: cover;
 }
@@ -164,7 +165,9 @@
 }
 
 .featured {
-  padding: 20px 0;
+  margin-top: 50px;
+  padding: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .featured .featured-carousel {
   display: flex;

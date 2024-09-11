@@ -1,6 +1,9 @@
 
 .featured {
-  padding: 20px 0;
+  margin-top: 50px;
+  padding: 30px;
+  // background is grey with 50% opacity
+  background-color: rgba(0, 0, 0, 0.5);
 
   .featured-carousel {
     display: flex;

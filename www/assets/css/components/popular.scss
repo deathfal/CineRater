@@ -1,6 +1,7 @@
 
 .popular {
-  padding: 20px 0;
+  // padding: 20px 0;
+  margin: 0 30px;
 
   .popular-grid {
     display: flex;
@@ -11,8 +12,8 @@
       text-align: center;
 
       img {
-        width: 80px;
-        height: 80px;
+        width: 110px;
+        height: 110px;
         border-radius: 50%;
         object-fit: cover;
       }

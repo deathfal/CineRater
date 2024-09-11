@@ -20,8 +20,8 @@
                     <img src="../../assets/img/logo.png" alt="Cine Rater Logo">
                 </a>
             </div>
-            <div class="col">
-                <input type="text" placeholder="Search...">
+             <div class="col-3">
+                <input type="text" placeholder="Search">
             </div>
             <div class="col">
                 <a href="#">Home</a>
