@@ -8,16 +8,26 @@
 </head>
 
 <body>
-    <nav>
-        <div class="logo">
-            <a href="/">Logo</a>
+    
+<nav class="navbar">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <a href="#">
+                    <img src="../../assets/img/logo.png" alt="Cine Rater Logo">
+                </a>
+            </div>
+            <div class="col">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="col">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
         </div>
-        <div class="menu">
-            <a href="#">À propos</a>
-            <a href="#">Se connecter</a>
-            <a href="#">S'inscrire</a>
-        </div>
-    </nav>
+    </div>
+</nav>
 
     <?php include $this->view; ?>
 </body>

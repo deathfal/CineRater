@@ -17,7 +17,6 @@
 // Column
 .col {
   position: relative;
-  width: calc(100% - 2vw);
   min-height: 1px;
   padding-right: 1vw;
   padding-left: 1vw;
@@ -26,8 +25,8 @@
 // Column sizes
 @for $i from 1 through 12 {
   .col-#{$i} {
-    flex: 0 0 calc(#{$i} / 12 * 100vw - 2vw);
-    max-width: calc(#{$i} / 12 * 100vw - 2vw);
+    flex: 0 0 calc(#{$i} / 12 * 100% - 2vw);
+    max-width: calc(#{$i} / 12 * 100% - 2vw);
   }
 }
 

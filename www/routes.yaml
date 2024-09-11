@@ -1,3 +1,7 @@
 /:
   controller: Main
   action : home
+
+/design-guide:
+  controller: Main
+  action : designGuide

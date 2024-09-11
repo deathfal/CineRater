@@ -1,0 +1,31 @@
+.navbar {
+  background-color: #333;
+  color: #fff;
+  padding: 0.4vh 0;
+}
+.navbar .row {
+  align-items: center;
+}
+.navbar .col {
+  display: flex;
+  align-items: center;
+}
+.navbar a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.navbar input[type=text] {
+  padding: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+.navbar img {
+  height: 70px;
+  width: auto;
+}
+
+/*# sourceMappingURL=navbar.css.map */

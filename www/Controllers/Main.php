@@ -15,4 +15,9 @@ class Main{
         echo "ceci est la page a propos";
     }
 
+    public function designGuide(): void
+    {
+        $view = new View("designGuide", "front");
+    }
+
 }

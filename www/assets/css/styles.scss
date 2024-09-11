@@ -1,6 +1,34 @@
 @import 'components/grid';
+@import 'components/navbar';
 
 
 body {
     background-color: rgb(56, 85, 119);
+    color: #fff;
 }
+
+
+
+$color-map: (
+  danger: #ff0000,
+  success: #00ff00,
+  warning: #ffcc00,
+  info: #00ccff,
+  primary: #0055ff,
+  secondary: #ff00ff
+);
+
+
+@mixin row-color($color) {
+  background-color: map-get($color-map, $color);
+}
+
+@each $name, $color in $color-map {
+    .row-#{$name} {
+      @include row-color($name);
+    }
+  
+    .col-#{$name} {
+      background-color: $color;
+    }
+  }
