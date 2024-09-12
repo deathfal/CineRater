@@ -1,0 +1,23 @@
+{
+    "Servers": {
+      "1": {
+        "Name": "CineRater DB",
+        "Group": "Servers",
+        "Host": "postgres",
+        "Port": 5432,
+        "Username": "adam",
+        "Password": "el-reverso",
+        "SSLMode": "prefer",
+        "MaintenanceDB": "postgres",
+        "DBRestrictions": [],
+        "RoleRestrictions": [],
+        "SSHHost": "",
+        "SSHPort": 22,
+        "SSHUsername": "",
+        "SSHPassword": "",
+        "SSHKey": "",
+        "PassFile": ""
+      }
+    }
+  }
+  

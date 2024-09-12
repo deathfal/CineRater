@@ -5,3 +5,7 @@
 /design-guide:
   controller: Main
   action : designGuide
+
+/register:
+  controller: SecurityController
+  action : register

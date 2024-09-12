@@ -9,6 +9,8 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
+    networks:
+      - mynetwork
 
   postgres:
     image: postgres
@@ -16,6 +18,8 @@ services:
       POSTGRES_DB: cinerater-db
       POSTGRES_USER: adam
       POSTGRES_PASSWORD: el-reverso
+    ports:
+      - "5432:5432"
     networks:
       - mynetwork
 
