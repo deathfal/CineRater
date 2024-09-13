@@ -7,30 +7,40 @@
     <link rel="stylesheet" href="../assets/css/styles.css">
     <!-- include js  -->
     <script src="../../assets/js/functions.js"></script>
-
 </head>
 
 <body>
-    
-<nav class="navbar">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <a href="#">
-                    <img src="../../assets/img/logo.png" alt="Cine Rater Logo">
-                </a>
-            </div>
-             <div class="col-3">
-                <input type="text" placeholder="Search">
-            </div>
-            <div class="col">
-                <a href="#">Home</a>
-                <a href="#">About</a>
-                <a href="#">Contact</a>
+
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="row">
+
+
+                <div class="col col-6">
+                    <a href="#">
+                        <img src="../../assets/img/icons/logo.png" alt="Cine Rater Logo">
+                    </a>
+
+
+
+                    <input type="text" placeholder="Search">
+
+
+
+
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Contact</a>
+                </div>
+
+
+                <div class="col auth-buttons">
+                    <a href="/login">Login</a>
+                    <a href="/register">Register</a>
+                </div>
             </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
     <?php include $this->view; ?>
 </body>

@@ -5,32 +5,32 @@
     <div class="carousel-item">
         <img src="../../assets/img/car1.png" alt="Featured Image">
         <div class="carousel-content">
-            <h1>Latest Movie Title</h1>
-            <p>Catch the latest blockbuster!</p>
+            <h1>The Big Blue</h1>
+            <p>The rivalry between Enzo and Jacques, two childhood friends...</p>
             <button>Watch Now</button>
         </div>
     </div>
     <div class="carousel-item">
         <img src="../../assets/img/car2.png" alt="Featured Image">
         <div class="carousel-content">
-            <h1>Movie Title 2</h1>
-            <p>Description for the second movie.</p>
+            <h1>Tron Legacy</h1>
+            <p>The son of a virtual world designer goes looking for his father...</p>
             <button>Watch Now</button>
         </div>
     </div>
     <div class="carousel-item">
         <img src="../../assets/img/car3.png" alt="Featured Image">
         <div class="carousel-content">
-            <h1>Movie Title 3</h1>
-            <p>Description for the third movie.</p>
+            <h1>Fight Club</h1>
+            <p>An insomniac office worker and a devil-may-care soapmaker...</p>
             <button>Watch Now</button>
         </div>
     </div>
     <div class="carousel-item">
         <img src="../../assets/img/car4.png" alt="Featured Image">
         <div class="carousel-content">
-            <h1>Movie Title 4</h1>
-            <p>Description for the fourth movie.</p>
+            <h1>Taxi Driver</h1>
+            <p>A mentally unstable veteran works as a nighttime taxi driver...</p>
             <button>Watch Now</button>
         </div>
     </div>

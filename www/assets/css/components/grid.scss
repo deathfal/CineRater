@@ -31,9 +31,28 @@
 }
 
 // Container fluid
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+// Width control (auto)
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+// Container fluid
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
   padding-right: 2vw;
   padding-left: 2vw;
 }
+
+

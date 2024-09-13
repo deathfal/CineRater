@@ -79,11 +79,24 @@
   max-width: calc(12 / 12 * 100% - 2vw);
 }
 
+.justify-content-center {
+  display: flex;
+  justify-content: center;
+}
+
+.align-items-center {
+  display: flex;
+  align-items: center;
+}
+
+.col-auto {
+  flex: 0 0 auto;
+  width: auto;
+}
+
 .container-fluid {
   margin-right: auto;
   margin-left: auto;
   padding-right: 2vw;
   padding-left: 2vw;
 }
-
-/*# sourceMappingURL=grid.css.map */

@@ -9,3 +9,7 @@
 /register:
   controller: SecurityController
   action : register
+
+/login:
+  controller: SecurityController
+  action : login

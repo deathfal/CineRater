@@ -23,7 +23,7 @@
 
     .carousel-item.outgoing-next {
         visibility: visible;
-        transform: translateX(-100%); 
+        transform: translateX(-100%);
         z-index: 1;
     }
 
@@ -54,7 +54,7 @@
         border: none;
         padding: 10px;
         cursor: pointer;
-        z-index: 1000;
+        z-index: 100;
     }
 
     .carousel-prev {
@@ -68,5 +68,41 @@
     .carousel-prev:hover,
     .carousel-next:hover {
         background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .carousel-content {
+        position: absolute;
+        bottom: 20px; 
+        left: 20px; 
+        text-align: left; 
+        color: #fff;
+        background: rgba(0, 0, 0, 0.5); 
+        padding: 20px;
+        z-index: 10;
+        max-width: 80%;
+    }
+
+    .carousel-content h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
+
+    .carousel-content p {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .carousel-content button {
+        padding: 10px 20px;
+        background-color: #ff4500;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+    }
+
+    .carousel-content button:hover {
+        background-color: #ff5722;
     }
 }
