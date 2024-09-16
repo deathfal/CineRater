@@ -13,3 +13,15 @@
 /login:
   controller: SecurityController
   action : login
+
+/verification:
+  controller: SecurityController
+  action: verification
+
+/verification-pending:
+  controller: SecurityController
+  action: verificationPending
+
+/logout:
+  controller: SecurityController
+  action: logout

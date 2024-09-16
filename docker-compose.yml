@@ -9,6 +9,7 @@ services:
       - ./server/000-default.conf:/etc/apache2/sites-available/000-default.conf
       - ./server/apache2.conf:/etc/apache2/apache2.conf
       - ./server/php.ini:/usr/local/etc/php/php.ini
+      - ./vendor:/var/www/vendor   
     networks:
       - mynetwork
 
@@ -33,7 +34,15 @@ services:
     depends_on:
       - postgres
     networks:
-      - mynetwork    
+      - mynetwork
+
+  mailhog:
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"  # SMTP server
+      - "8025:8025"  # Web UI to view emails
+    networks:
+      - mynetwork
       
 networks:
   mynetwork:

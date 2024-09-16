@@ -2,6 +2,13 @@
 
 namespace App;
 
+require __DIR__ . '/../vendor/autoload.php';
+
+session_start();
+
+
+var_dump($_SESSION); 
+
 spl_autoload_register("App\myAutoloader");
 function myAutoloader($class)
 {
@@ -10,17 +17,15 @@ function myAutoloader($class)
     $file .= ".php";
     if (file_exists($file)) {
         include $file;
+    } else {
+        echo "Autoloader: Could not load $file<br>";
     }
 }
-
-
 
 $uri = strtolower($_SERVER["REQUEST_URI"]);
 $uri = strtok($uri, "?");
 if (strlen($uri) > 1)
     $uri = rtrim($uri, "/");
-
-
 
 $fileRoute = "routes.yaml";
 if (file_exists($fileRoute)) {
@@ -28,7 +33,6 @@ if (file_exists($fileRoute)) {
 } else {
     die("Le fichier de routing n'existe pas");
 }
-
 
 if (!empty($listOfRoutes[$uri])) {
     if (!empty($listOfRoutes[$uri]["controller"])) {
@@ -55,19 +59,14 @@ if (!empty($listOfRoutes[$uri])) {
             }
 
         } else {
-            die("La route " . $uri . " ne possède pas d'action dans le ficher " . $fileRoute);
+            die("La route " . $uri . " ne possède pas d'action dans le fichier " . $fileRoute);
         }
     } else {
-        die("La route " . $uri . " ne possède pas de controller dans le ficher " . $fileRoute);
+        die("La route " . $uri . " ne possède pas de controller dans le fichier " . $fileRoute);
     }
 } else {
     include "Controllers/Error.php";
-    $object = new Controllers\Error();
+    $object = new \App\Controllers\Error();
     $object->page404();
 }
-
-
-
-
-
 

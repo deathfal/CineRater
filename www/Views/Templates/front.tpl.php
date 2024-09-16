@@ -15,28 +15,26 @@
         <div class="container-fluid">
             <div class="row">
 
-
                 <div class="col col-6">
                     <a href="#">
                         <img src="../../assets/img/icons/logo.png" alt="Cine Rater Logo">
                     </a>
 
-
-
                     <input type="text" placeholder="Search">
 
-
-
-
-                    <a href="#">Home</a>
+                    <a href="/">Home</a>
                     <a href="#">About</a>
                     <a href="#">Contact</a>
                 </div>
 
-
                 <div class="col auth-buttons">
-                    <a href="/login">Login</a>
-                    <a href="/register">Register</a>
+                    <?php if (!isset($_SESSION['email'])): ?>
+                        <a href="/login">Login</a>
+                        <a href="/register">Register</a>
+                    <?php else: ?>
+                        <a href="/dashboard">Dashboard</a>
+                        <a href="/logout">Logout</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

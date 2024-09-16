@@ -1,0 +1,93 @@
+.carousel {
+  position: relative;
+  overflow: hidden;
+  height: 700px;
+}
+.carousel .carousel-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: transform 0.8s ease-in-out;
+}
+.carousel .carousel-item.active {
+  visibility: visible;
+  transform: translateX(0);
+  z-index: 2;
+}
+.carousel .carousel-item.outgoing-next {
+  visibility: visible;
+  transform: translateX(-100%);
+  z-index: 1;
+}
+.carousel .carousel-item.outgoing-prev {
+  visibility: visible;
+  transform: translateX(100%);
+  z-index: 1;
+}
+.carousel .carousel-item.incoming-prev {
+  visibility: visible;
+  transform: translateX(-100%);
+}
+.carousel img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.carousel .carousel-prev,
+.carousel .carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 100;
+}
+.carousel .carousel-prev {
+  left: 10px;
+}
+.carousel .carousel-next {
+  right: 10px;
+}
+.carousel .carousel-prev:hover,
+.carousel .carousel-next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.carousel .carousel-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  text-align: left;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  z-index: 10;
+  max-width: 80%;
+}
+.carousel .carousel-content h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+}
+.carousel .carousel-content p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.carousel .carousel-content button {
+  padding: 10px 20px;
+  background-color: #ff4500;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+.carousel .carousel-content button:hover {
+  background-color: #ff5722;
+}
