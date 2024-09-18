@@ -19,37 +19,40 @@ class SecurityController extends Controller
 
         if ($_SERVER['REQUEST_METHOD'] === strtoupper($formConfig['config']['method'])) {
             if ($this->verificator->checkForm($formConfig, $_POST)) {
-                $newUser = new User();
-                $newUser->setEmail($_POST['email']);
-                $newUser->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT));
-                $newUser->setStatus('inactive'); // Default status for a new user
+                $userModel = new User();
 
-                $activationToken = bin2hex(random_bytes(16));
-                $newUser->setActivationToken($activationToken);
-
-                if ($newUser->save()) {
-                    $activationLink = "http://localhost/verification?email=" . urlencode($newUser->getEmail()) . "&token=" . $activationToken;
-                    $subject = "Activate your CineRater Account";
-                    $body = "
-                    <h1>Welcome to CineRater!</h1>
-                    <p>Please click the link below to activate your account:</p>
-                    <a href='{$activationLink}'>Activate Account</a>
-                ";
-
-                    Mailer::sendMail($newUser->getEmail(), $subject, $body);
-
-                    $this->redirect('/verification-pending');
+                if ($userModel->findByEmail($_POST['email'])) {
+                    $formConfig['config']['errorMessage'] = 'A user with this email already exists.';
                 } else {
-                    $formConfig['config']['errorMessage'] = 'An error occurred while creating your account. Please try again.';
+                    $newUser = new User();
+                    $newUser->setEmail($_POST['email']);
+                    $newUser->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT));
+                    $newUser->setRole('unverified'); // Default role
+
+                    $activationToken = bin2hex(random_bytes(16));
+                    $newUser->setActivationToken($activationToken);
+
+                    if ($newUser->save()) {
+                        $activationLink = "http://localhost/verification?email=" . urlencode($newUser->getEmail()) . "&token=" . $activationToken;
+                        $subject = "Activate your account";
+                        $body = "<p>Click the link below to activate your account:</p><a href='{$activationLink}'>Activate</a>";
+
+                        Mailer::sendMail($newUser->getEmail(), $subject, $body);
+                        $this->redirect('/verification-pending');
+                    } else {
+                        $formConfig['config']['errorMessage'] = 'Error creating account. Try again.';
+                    }
                 }
             } else {
-                $formConfig['config']['errorMessage'] = 'Form is invalid';
+                $formConfig['config']['errorMessage'] = 'Form is invalid.';
             }
         }
 
         $view = new View('Security/register', 'frontSecurity');
         $view->assign('formConfig', $formConfig);
     }
+
+
 
     public function verificationPending(): void
     {
@@ -84,59 +87,46 @@ class SecurityController extends Controller
     {
         $form = new Login();
         $formConfig = $form->getConfig();
-    
+
         if ($_SERVER['REQUEST_METHOD'] === strtoupper($formConfig['config']['method'])) {
-            error_log("Form submitted with method " . $_SERVER['REQUEST_METHOD']);
-    
             if ($this->verificator->checkForm($formConfig, $_POST)) {
-                error_log("Form validation passed.");
-                
                 $userModel = new User();
                 $user = $userModel->findByEmail($_POST['email']);
-    
+
                 if ($user) {
-                    error_log("User found in database: " . $user->getEmail());
-                    
                     if (password_verify($_POST['password'], $user->getPassword())) {
-                        error_log("Password verified.");
-    
                         if ($user->getRole() === 'unverified') {
-                            $formConfig['config']['errorMessage'] = 'Your account is not verified. Please check your email.';
-                            error_log("User is unverified.");
+                            $formConfig['config']['errorMessage'] = 'Your account is not verified.';
                         } else {
                             $_SESSION['email'] = $user->getEmail();
                             $_SESSION['role'] = $user->getRole();
-                            error_log("Login successful, redirecting to /");
                             $this->redirect('/');
                         }
                     } else {
-                        error_log("Password verification failed.");
-                        $formConfig['config']['errorMessage'] = 'Invalid email or password';
+                        $formConfig['config']['errorMessage'] = 'Incorrect password.';
                     }
                 } else {
-                    error_log("No user found with this email.");
-                    $formConfig['config']['errorMessage'] = 'Invalid email or password';
+                    $formConfig['config']['errorMessage'] = 'Account not found.';
                 }
             } else {
-                error_log("Form validation failed.");
-                $formConfig['config']['errorMessage'] = 'Form is invalid';
+                $formConfig['config']['errorMessage'] = 'Form is invalid.';
             }
         }
-    
+
         $view = new View('Security/login', 'frontSecurity');
         $view->assign('formConfig', $formConfig);
     }
 
     public function logout(): void
-{
-    $_SESSION = [];
+    {
+        $_SESSION = [];
 
-    session_destroy();
+        session_destroy();
 
-    $this->redirect('/login');
-}
+        $this->redirect('/');
+    }
 
-    
-    
+
+
 
 }

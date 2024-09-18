@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Cine Rater - Security</title>
     <link rel="stylesheet" href="/assets/css/styles.css">
+    <script src="../../assets/js/form-validator.js"></script>
+
 </head>
 
 <body>
