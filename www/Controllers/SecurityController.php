@@ -8,6 +8,8 @@ use App\Forms\Register;
 use App\Forms\Login;
 use App\Models\User;
 use App\Core\Mailer;
+use App\Repository\UserRepository;
+
 
 class SecurityController extends Controller
 {
@@ -16,19 +18,31 @@ class SecurityController extends Controller
     {
         $form = new Register();
         $formConfig = $form->getConfig();
+        $userRepository = new UserRepository(); // Instantiate UserRepository
 
         if ($_SERVER['REQUEST_METHOD'] === strtoupper($formConfig['config']['method'])) {
             if ($this->verificator->checkForm($formConfig, $_POST)) {
                 $userModel = new User();
 
+                // Check if the user already exists
                 if ($userModel->findByEmail($_POST['email'])) {
                     $formConfig['config']['errorMessage'] = 'A user with this email already exists.';
                 } else {
                     $newUser = new User();
                     $newUser->setEmail($_POST['email']);
                     $newUser->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT));
-                    $newUser->setRole('unverified'); // Default role
 
+                    // Check total number of users
+                    $totalUsers = $userRepository->getTotalUsers();
+
+                    // If there are no users, make this user an admin
+                    if ($totalUsers === 0) {
+                        $newUser->setRole('admin'); // First user becomes admin
+                    } else {
+                        $newUser->setRole('unverified'); // Other users start as unverified
+                    }
+
+                    // Generate activation token
                     $activationToken = bin2hex(random_bytes(16));
                     $newUser->setActivationToken($activationToken);
 
@@ -51,7 +65,6 @@ class SecurityController extends Controller
         $view = new View('Security/register', 'frontSecurity');
         $view->assign('formConfig', $formConfig);
     }
-
 
 
     public function verificationPending(): void

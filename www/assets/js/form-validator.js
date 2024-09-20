@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function validatePassword(password) {
-    return password.length >= 8;
+    return password.length >= 4;
   }
 
   function showError(form, message) {
@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       if (!validatePassword(password)) {
-        showError(registerForm, "Password must be at least 8 characters");
+        showError(registerForm, "Password must be at least 4 characters");
         return;
       }
 

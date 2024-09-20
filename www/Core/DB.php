@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Core;
 
 use PDO;
@@ -29,7 +28,6 @@ class DB
         }
     }
 
-    // Get the single instance of the DB connection
     public static function getInstance(): DB
     {
         if (self::$instance === null) {
@@ -106,6 +104,51 @@ class DB
         } catch (PDOException $e) {
             echo "Error deleting record: " . $e->getMessage();
             return false;
+        }
+    }
+
+    public function find(string $table, array $conditions): ?array
+    {
+        try {
+            $whereClause = implode(' AND ', array_map(fn($key) => "$key = :$key", array_keys($conditions)));
+    
+            $sql = "SELECT * FROM $table WHERE $whereClause";
+            $stmt = $this->connection->prepare($sql);
+    
+            foreach ($conditions as $key => $value) {
+                $stmt->bindValue(":$key", $value);
+            }
+    
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            // Check if fetch returned false (meaning no records were found)
+            return $result !== false ? $result : null;
+        } catch (PDOException $e) {
+            echo "Error finding record: " . $e->getMessage();
+            return null;
+        }
+    }
+    
+    public function count(string $table): int
+    {
+        try {
+            $stmt = $this->connection->query("SELECT COUNT(*) FROM $table");
+            return (int) $stmt->fetchColumn();
+        } catch (PDOException $e) {
+            echo "Error counting records: " . $e->getMessage();
+            return 0;
+        }
+    }
+
+    public function findAll(string $table): array
+    {
+        try {
+            $stmt = $this->connection->query("SELECT * FROM $table");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            echo "Error finding all records: " . $e->getMessage();
+            return [];
         }
     }
 }

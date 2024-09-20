@@ -25,3 +25,19 @@
 /logout:
   controller: SecurityController
   action: logout
+
+/admin/dashboard:
+  controller: AdminController
+  action: index
+
+/admin/create-user:
+  controller: AdminController
+  action: createUser
+
+/admin/edit-user:
+  controller: AdminController
+  action: editUser
+
+/admin/delete-user:
+  controller: AdminController
+  action: deleteUser

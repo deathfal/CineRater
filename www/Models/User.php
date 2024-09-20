@@ -6,10 +6,26 @@ use App\Repository\UserRepository;
 
 class User
 {
+    protected string $id;
     protected string $email;
     protected string $password;
     protected ?string $activation_token = null;
     protected string $role = 'unverified'; // Default role
+
+
+    public function __construct()
+    {
+        $this->id = bin2hex(random_bytes(6));
+    }
+    public function setId(string $id): void
+    {
+        $this->id = $id;
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
+    }
 
     public function setEmail(string $email): void
     {
@@ -53,10 +69,13 @@ class User
 
     public function save(): bool
     {
+        if (!$this->id) {
+            $this->id = bin2hex(random_bytes(6));
+        }
+
         $repository = new UserRepository();
         return $repository->save($this);
     }
-
     public function findByEmail(string $email): ?self
     {
         $repository = new UserRepository();
@@ -67,5 +86,11 @@ class User
     {
         $repository = new UserRepository();
         return $repository->activate($this, $token);
+    }
+
+    public function getTotalUsers(): int
+    {
+        $repository = new UserRepository();
+        return $repository->getTotalUsers();
     }
 }

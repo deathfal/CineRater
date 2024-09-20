@@ -22,7 +22,7 @@ class FormVerificator
             }
 
             // Password length validation
-            if ($input['type'] === 'password' && strlen($data[$name]) < 8) {
+            if ($input['type'] === 'password' && strlen($data[$name]) < 4) {
                 return false; // Password must be at least 8 characters
             }
 

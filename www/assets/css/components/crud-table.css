@@ -1,0 +1,49 @@
+.crud-table {
+  margin: 20px 0;
+}
+.crud-table .crud-table__table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: rgba(0, 0, 0, 0.5); /* Add semi-transparent background */
+  color: #fff;
+}
+.crud-table .crud-table__table th, .crud-table .crud-table__table td {
+  padding: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.crud-table .crud-table__table th {
+  background-color: rgba(255, 87, 34, 0.8);
+  color: white;
+  font-weight: bold;
+}
+.crud-table .crud-table__table a {
+  text-decoration: none !important;
+}
+.crud-table .crud-table__table a:hover {
+  text-decoration: underline;
+}
+.crud-table .btn {
+  background-color: #ff5722;
+  padding: 10px 15px;
+  color: white;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+}
+.crud-table .btn:hover {
+  background-color: #a03f1b;
+}
+.crud-table td .btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  font-size: 0.9rem;
+}
+.crud-table td.actions {
+  text-align: center;
+}
+.crud-table tr {
+  height: 50px;
+}

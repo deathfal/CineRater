@@ -35,6 +35,10 @@
                         <a href="/dashboard">Dashboard</a>
                         <a href="/logout">Logout</a>
                     <?php endif; ?>
+
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <a href="/admin/dashboard">Admin</a>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
