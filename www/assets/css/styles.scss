@@ -1,24 +1,29 @@
-@import 'components/grid';
-@import 'components/navbar';
-@import 'components/popular';
-@import 'components/up-next';
-@import 'components/featured';
-@import 'components/carousel';
-@import 'components/form';
-@import 'components/crud-table';
-@import 'components/modal';
-@import 'components/movie-details';
-@import 'components/comments';
-
+@import "components/grid";
+@import "components/navbar";
+@import "components/popular";
+@import "components/up-next";
+@import "components/featured";
+@import "components/carousel";
+@import "components/form";
+@import "components/crud-table";
+@import "components/modal";
+@import "components/movie-details";
+@import "components/comments";
+@import "components/footer";
 
 body {
-    background-color: rgb(56, 85, 119);
-    color: #fff;
-    margin: 0;
-    padding: 0;
+  background-color: rgb(56, 85, 119);
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-
+main {
+  flex: 1;
+}
 
 $color-map: (
   danger: #ff0000,
@@ -26,20 +31,63 @@ $color-map: (
   warning: #ffcc00,
   info: #00ccff,
   primary: #0055ff,
-  secondary: #ff00ff
+  secondary: #ff00ff,
 );
 
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgb(56, 85, 119);
+  text-align: center;
+  color: #ff6347;
+
+  .error-content {
+    font-family: "Arial", sans-serif;
+
+    .error-code {
+      font-size: 10rem;
+      font-weight: bold;
+      color: #ff6347;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .error-message {
+      font-size: 2rem;
+      color: #fff;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .back-home {
+      margin-top: 3rem;
+      padding: 1rem 2rem;
+      background-color: #ff6347;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: darken(#ff6347, 10%);
+      }
+    }
+  }
+}
 
 @mixin row-color($color) {
   background-color: map-get($color-map, $color);
 }
 
 @each $name, $color in $color-map {
-    .row-#{$name} {
-      @include row-color($name);
-    }
-  
-    .col-#{$name} {
-      background-color: $color;
-    }
+  .row-#{$name} {
+    @include row-color($name);
   }
+
+  .col-#{$name} {
+    background-color: $color;
+  }
+}

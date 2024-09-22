@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <nav class="navbar">
-    </nav>
+    <!-- <nav class="navbar">
+    </nav> -->
 
     <main>
         <?php include $this->view; ?> 

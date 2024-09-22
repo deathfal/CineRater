@@ -15,22 +15,37 @@ class AdminController extends Controller
     {
         parent::__construct();
         $this->userRepository = new UserRepository();
+
+        $this->checkAdminAccess();
     }
+
+    private function checkAdminAccess(): void
+    {
+        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+            if ($this->isAjaxRequest()) {
+                echo json_encode(['status' => 'error', 'message' => 'Unauthorized access.']);
+                http_response_code(403);
+                exit();
+            } else {
+                $view = new View('Error/error', 'error');
+                exit();
+            }
+        }
+    }
+
 
     // Display the admin dashboard with a list of users
     public function index(): void
     {
-        $users = $this->userRepository->findAll(); 
+        $users = $this->userRepository->findAll();
 
-        // var_dump($users);
-        // Define columns for the user table
         $columns = ['Email', 'Role', 'Actions'];
 
-        $view = new View('Admin/users', "front");
+        $view = new View('Admin/users', "backoffice");
         $view->assign('title', 'User Management');
         $view->assign('entityName', 'User');
         $view->assign('columns', $columns);
-        $view->assign('items', $users); 
+        $view->assign('items', $users);
     }
 
     // Add a new user (admin functionality)
@@ -107,25 +122,25 @@ class AdminController extends Controller
 
 
     public function deleteUser(): void
-{
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
-        $userId = $_POST['id'];
-        
-        if ($this->userRepository->delete($userId)) {
-            if ($this->isAjaxRequest()) {
-                echo json_encode(['status' => 'success']);
-                return;
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+            $userId = $_POST['id'];
+
+            if ($this->userRepository->delete($userId)) {
+                if ($this->isAjaxRequest()) {
+                    echo json_encode(['status' => 'success']);
+                    return;
+                }
+                $this->redirect('/admin');
+            } else {
+                if ($this->isAjaxRequest()) {
+                    echo json_encode(['status' => 'error', 'message' => 'Failed to delete user.']);
+                    return;
+                }
+                // Handle error
+                $view = new View('Admin/dashboard', 'front');
+                $view->assign('error', 'Failed to delete user.');
             }
-            $this->redirect('/admin');
-        } else {
-            if ($this->isAjaxRequest()) {
-                echo json_encode(['status' => 'error', 'message' => 'Failed to delete user.']);
-                return;
-            }
-            // Handle error
-            $view = new View('Admin/dashboard', 'front');
-            $view->assign('error', 'Failed to delete user.');
         }
     }
-}
 }
