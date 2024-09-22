@@ -46,4 +46,17 @@ class MovieController extends Controller
         }
     }
 
+    public function searchByTitle(): void
+    {
+        $title = $_GET['title'] ?? '';
+        if (!empty($title)) {
+            $movies = $this->movieRepository->searchByTitle($title);
+        } else {
+            $movies = [];
+        }
+
+        $view = new View('Search/results', 'front');
+        $view->assign('movies', $movies);
+    }
+
 }

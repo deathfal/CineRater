@@ -53,3 +53,7 @@
 /search:
   controller: MovieController
   action: search
+
+/search-title:
+  controller: MovieController
+  action : searchByTitle

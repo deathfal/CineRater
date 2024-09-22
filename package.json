@@ -19,6 +19,12 @@
   },
   "homepage": "https://github.com/deathfal/CineRater#readme",
   "dependencies": {
+    "imagemin": "^9.0.0",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
     "sass": "^1.71.1"
+  },
+  "devDependencies": {
+    "terser": "^5.33.0"
   }
 }

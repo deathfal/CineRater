@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>Cine Rater</title>
     <link rel="stylesheet" href="../assets/css/styles.css">
-    <script src="../../assets/js/functions.js"></script>
+    <!-- <script src="../../assets/js/functions.js"></script> -->
+    <script src="../../assets/js/functions.min.js"></script>    
 
 </head>
 

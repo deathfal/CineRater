@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
   // Carousel controls
 
-  if(document.querySelector(".carousel")) {
+  if (document.querySelector(".carousel")) {
     const carousel = document.querySelector(".carousel");
     const prevButton = document.querySelector(".carousel-prev");
     const nextButton = document.querySelector(".carousel-next");
@@ -86,6 +86,17 @@ document.addEventListener("DOMContentLoaded", function () {
     } else {
       resultBox.style.display = "none"; // Hide results box
       resultBox.innerHTML = ""; // Clear results when input is too short
+    }
+  });
+
+  searchInput.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      const query = searchInput.value.trim();
+      if (query.length > 2) {
+        window.location.href = `/search-title?title=${encodeURIComponent(
+          query
+        )}`;
+      }
     }
   });
 

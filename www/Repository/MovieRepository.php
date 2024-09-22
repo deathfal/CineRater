@@ -31,6 +31,15 @@ class MovieRepository
         return null;
     }
 
+    public function searchByTitle(string $title): array
+    {
+        $stmt = $this->db->prepare("SELECT * FROM movies WHERE title ILIKE :title");
+        $stmt->bindValue(':title', "%$title%");
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
     public function findAll(): array
     {
         $movies = [];

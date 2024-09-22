@@ -14,3 +14,7 @@ Thumbs.db
 
 # Composer
 www/vendor/
+
+
+compress.js
+minify.js
