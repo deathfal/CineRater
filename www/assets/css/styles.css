@@ -105,6 +105,8 @@
   background-color: #333;
   color: #fff;
   padding: 0.4vh 0;
+  position: relative;
+  z-index: 1000;
 }
 .navbar .row {
   display: flex;
@@ -138,16 +140,62 @@
 .navbar .auth-buttons a:hover {
   background-color: #ff4500;
 }
+.navbar .auth-buttons .admin-btn {
+  background-color: #b71c1c;
+}
+.navbar .auth-buttons .admin-btn:hover {
+  background-color: #990707;
+}
 .navbar input[type=text] {
   padding: 8px;
   border-radius: 4px;
   border: 1px solid #ccc;
-  margin: 0 20px;
+  margin: 0 60px;
   width: 100%;
+  position: relative;
 }
 .navbar img {
   height: 70px;
   width: auto;
+}
+
+.search-results {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-height: 300px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+  padding: 10px;
+  display: none;
+}
+
+.search-result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+}
+
+.search-result-item img {
+  width: 40px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.search-result-item a {
+  color: #333;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.search-result-item:hover {
+  background-color: #f0f0f0;
 }
 
 .popular {
@@ -618,14 +666,54 @@
   color: #aaa;
 }
 
+.about-page {
+  background-color: #f9f9f9;
+  padding: 2rem;
+}
+.about-page .about-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #ff6347;
+}
+.about-page .about-header h1 {
+  font-size: 3rem;
+  font-weight: bold;
+}
+.about-page .about-header p {
+  font-size: 1.2rem;
+  color: #555;
+}
+.about-page .about-content .col {
+  margin-bottom: 2rem;
+}
+.about-page .about-content .mission h2, .about-page .about-content .team h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.about-page .about-content .mission p, .about-page .about-content .team p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #666;
+}
+.about-page .back-home {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background-color: #ff6347;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.about-page .back-home:hover {
+  background-color: #ff3814;
+}
+
 body {
   background-color: rgb(56, 85, 119);
   color: #fff;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
 }
 
 main {

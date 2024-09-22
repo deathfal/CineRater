@@ -44,12 +44,17 @@ class DB
         return $this->connection;
     }
 
+    public function prepare(string $sql)
+    {
+        return $this->connection->prepare($sql);
+    }
+
     public function create(string $table, array $data): bool
     {
         try {
             $fields = implode(', ', array_keys($data));
             $values = implode(', ', array_map(fn($value) => ":$value", array_keys($data)));
-            
+
             $sql = "INSERT INTO $table ($fields) VALUES ($values)";
             $stmt = $this->getConnection()->prepare($sql);
 
@@ -92,7 +97,7 @@ class DB
     {
         try {
             $whereClause = implode(' AND ', array_map(fn($key) => "$key = :$key", array_keys($conditions)));
-            
+
             $sql = "DELETE FROM $table WHERE $whereClause";
             $stmt = $this->connection->prepare($sql);
 
@@ -111,17 +116,17 @@ class DB
     {
         try {
             $whereClause = implode(' AND ', array_map(fn($key) => "$key = :$key", array_keys($conditions)));
-    
+
             $sql = "SELECT * FROM $table WHERE $whereClause";
             $stmt = $this->connection->prepare($sql);
-    
+
             foreach ($conditions as $key => $value) {
                 $stmt->bindValue(":$key", $value);
             }
-    
+
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
             // Check if fetch returned false (meaning no records were found)
             return $result !== false ? $result : null;
         } catch (PDOException $e) {
@@ -129,7 +134,7 @@ class DB
             return null;
         }
     }
-    
+
     public function count(string $table): int
     {
         try {
@@ -151,4 +156,26 @@ class DB
             return [];
         }
     }
+
+    public function search(string $table, string $query): array
+    {
+        try {
+            // Ensure you are fetching specific fields like 'id' and 'title'
+            $stmt = $this->connection->prepare("SELECT id, title FROM $table WHERE title ILIKE :query LIMIT 10");
+            $stmt->bindValue(':query', "%$query%");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Debug: check if result is empty or not properly fetched
+            if (empty($result)) {
+                error_log("No results found or incorrect field mapping in the search query.");
+            }
+
+            return $result;
+        } catch (PDOException $e) {
+            echo "Error searching records: " . $e->getMessage();
+            return [];
+        }
+    }
+
 }

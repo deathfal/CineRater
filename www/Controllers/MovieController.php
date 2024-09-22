@@ -30,4 +30,20 @@ class MovieController extends Controller
         $view = new View('Movie/show', "front");
         $view->assign('movie', $movie);
     }
+
+    public function search()
+    {
+        if (isset($_GET['query'])) {
+            $query = $_GET['query'];
+
+            $movies = $this->movieRepository->search($query);
+
+            header('Content-Type: application/json');
+            echo json_encode($movies);
+        } else {
+            header('Content-Type: application/json');
+            echo json_encode([]);
+        }
+    }
+
 }

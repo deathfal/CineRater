@@ -1,0 +1,39 @@
+.search-bar {
+  position: relative;
+  width: 100%;
+  margin-right: 50px;
+}
+.search-bar .search-bar-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.search-bar .search-results {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.search-bar .search-results .search-result-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+.search-bar .search-results .search-result-item a {
+  text-decoration: none;
+  color: #333;
+}
+.search-bar .search-results .search-result-item:hover {
+  background-color: #f0f0f0;
+}
+.search-bar .search-results p {
+  padding: 10px;
+  text-align: center;
+  color: #888;
+}

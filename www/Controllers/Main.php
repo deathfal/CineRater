@@ -12,12 +12,13 @@ class Main
         $movieRepository = new MovieRepository();
         $movies = $movieRepository->findAll();
 
-        $view = new \App\Core\View('home', 'front');
+        $view = new View('home', 'front');
         $view->assign('movies', $movies);
     }
     public function aboutUs(): void
     {
-        echo "ceci est la page a propos";
+
+        $view = new View("about", "front");
     }
 
     public function designGuide(): void

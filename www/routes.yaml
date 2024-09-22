@@ -6,6 +6,10 @@
   controller: Main
   action : designGuide
 
+/about:
+  controller: Main
+  action: aboutUs
+
 /register:
   controller: SecurityController
   action : register
@@ -45,3 +49,7 @@
 /movie/{id}:
   controller: MovieController
   action: showMovie
+
+/search:
+  controller: MovieController
+  action: search

@@ -12,6 +12,7 @@ class MovieRepository
     public function __construct()
     {
         $this->db = DB::getInstance();
+
     }
 
     public function findById(string $id): ?Movie
@@ -70,5 +71,15 @@ class MovieRepository
     public function delete(string $id): bool
     {
         return $this->db->delete('movies', ['id' => $id]);
+    }
+
+    public function search(string $query): array
+    {
+        $sql = "SELECT id, title, description, image FROM movies WHERE title ILIKE :query";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindValue(':query', "%$query%");
+        $stmt->execute();
+
+        return $stmt->fetchAll(\PDO::FETCH_ASSOC);
     }
 }
