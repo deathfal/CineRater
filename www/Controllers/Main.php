@@ -2,14 +2,19 @@
 namespace App\Controllers;
 
 use App\Core\View;
+use App\Repository\MovieRepository;
 
-class Main{
+class Main
+{
 
     public function home(): void
     {
-       $view = new View("home", "front");
-    }
+        $movieRepository = new MovieRepository();
+        $movies = $movieRepository->findAll();
 
+        $view = new \App\Core\View('home', 'front');
+        $view->assign('movies', $movies);
+    }
     public function aboutUs(): void
     {
         echo "ceci est la page a propos";

@@ -7,7 +7,6 @@ require __DIR__ . '/../vendor/autoload.php';
 session_start();
 
 
-var_dump($_SESSION); 
 
 spl_autoload_register("App\myAutoloader");
 function myAutoloader($class)
@@ -34,22 +33,32 @@ if (file_exists($fileRoute)) {
     die("Le fichier de routing n'existe pas");
 }
 
-if (!empty($listOfRoutes[$uri])) {
-    if (!empty($listOfRoutes[$uri]["controller"])) {
-        if (!empty($listOfRoutes[$uri]["action"])) {
+$routeFound = false;
 
-            $controller = $listOfRoutes[$uri]["controller"];
-            $action = $listOfRoutes[$uri]["action"];
+foreach ($listOfRoutes as $route => $params) {
+    // Convertir la route dynamique en expression régulière (ex: /user/{id})
+    $routePattern = preg_replace('/\{[a-z]+\}/', '([a-zA-Z0-9_\-]+)', $route);
+    $routePattern = str_replace('/', '\/', $routePattern);
+
+    if (preg_match('/^' . $routePattern . '$/', $uri, $matches)) {
+        array_shift($matches); // Retirer le premier match qui est l'URL entière
+
+        if (!empty($params["controller"]) && !empty($params["action"])) {
+            $controller = $params["controller"];
+            $action = $params["action"];
 
             if (file_exists("Controllers/" . $controller . ".php")) {
                 include "Controllers/" . $controller . ".php";
                 $controller = "App\\Controllers\\" . $controller;
+                
                 if (class_exists($controller)) {
                     $object = new $controller();
+                    
                     if (method_exists($object, $action)) {
-                        $object->$action();
+                        // Appel de l'action avec les paramètres dynamiques
+                        call_user_func_array([$object, $action], $matches);
                     } else {
-                        die("L'action' " . $action . " n'existe pas");
+                        die("L'action " . $action . " n'existe pas");
                     }
                 } else {
                     die("Le class controller " . $controller . " n'existe pas");
@@ -57,16 +66,17 @@ if (!empty($listOfRoutes[$uri])) {
             } else {
                 die("Le fichier controller " . $controller . " n'existe pas");
             }
-
         } else {
-            die("La route " . $uri . " ne possède pas d'action dans le fichier " . $fileRoute);
+            die("La route " . $route . " ne possède pas de controller ou d'action");
         }
-    } else {
-        die("La route " . $uri . " ne possède pas de controller dans le fichier " . $fileRoute);
+
+        $routeFound = true;
+        break;
     }
-} else {
+}
+
+if (!$routeFound) {
     include "Controllers/Error.php";
     $object = new \App\Controllers\Error();
     $object->page404();
 }
-

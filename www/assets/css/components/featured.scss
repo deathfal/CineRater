@@ -2,7 +2,6 @@
 .featured {
   margin-top: 50px;
   padding: 30px;
-  // background is grey with 50% opacity
   background-color: rgba(0, 0, 0, 0.5);
 
   .featured-carousel {
@@ -23,6 +22,11 @@
         font-size: 1rem;
         margin-top: 10px;
         color: #fff;
+      }
+
+      a{ 
+        color: #fff;
+        text-decoration: none;
       }
     }
   }

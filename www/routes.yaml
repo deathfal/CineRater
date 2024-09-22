@@ -41,3 +41,7 @@
 /admin/delete-user:
   controller: AdminController
   action: deleteUser
+
+/movie/{id}:
+  controller: MovieController
+  action: showMovie
